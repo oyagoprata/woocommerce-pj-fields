@@ -30,12 +30,10 @@ jQuery(function ($) {
         }
 
         if (ieField.length > 0) {
-            // Máscara genérica para IE. Pode ser ajustada por estado se necessário.
             ieField.mask('000.000.000.000', { reverse: true });
         }
         
         if (imField.length > 0) {
-             // Máscara genérica para IM.
             imField.mask('000.000.000', { reverse: true });
         }
 

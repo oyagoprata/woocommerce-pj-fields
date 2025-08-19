@@ -3,7 +3,7 @@
  * Plugin Name:       Dados Extras para Cadastro PJ (BFPJ)
  * Plugin URI:        https://github.com/oyagoprata/woocommerce-pj-fields
  * Description:       Adiciona e valida campos personalizados para Pessoa Jurídica no registro e checkout do WooCommerce.
- * Version:           1.4.1
+ * Version:           1.4.2
  * Author:            Yago Prata (MXR Studio)
  * Author URI:        https://mxrstudio.com.br
  * License:           GPLv2 or later
@@ -27,44 +27,42 @@ function bfpj_initialize_updater() {
     // Verificação de segurança: só tenta incluir o arquivo se ele existir
     if ( file_exists( $puc_file ) ) {
         require_once $puc_file;
-        try {
-            $bfpjUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-                'https://github.com/oyagoprata/woocommerce-pj-fields/', // URL do seu repositório no GitHub
-                __FILE__, // Caminho para o arquivo principal do seu plugin
-                'bfpj-dados-extras' // Slug único do seu plugin
-            );
-            // Define o branch principal como 'main'
-            $bfpjUpdateChecker->setBranch('main');
-        } catch (Exception $e) {
-            error_log('Erro ao inicializar o Plugin Update Checker para BFPJ: ' . $e->getMessage());
+
+        // Verificação final: só continua se a classe principal da biblioteca foi carregada com sucesso
+        if ( class_exists('Puc_v4_Factory') ) {
+            try {
+                $bfpjUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+                    'https://github.com/oyagoprata/woocommerce-pj-fields/',
+                    __FILE__,
+                    'bfpj-dados-extras'
+                );
+                $bfpjUpdateChecker->setBranch('main');
+            } catch (Exception $e) {
+                error_log('Erro ao inicializar o Plugin Update Checker para BFPJ: ' . $e->getMessage());
+            }
+        } else {
+            add_action('admin_notices', 'bfpj_updater_class_missing_notice');
         }
     } else {
-        // Se a biblioteca não for encontrada, exibe um aviso no painel do admin
-        add_action('admin_notices', 'bfpj_updater_missing_notice');
+        add_action('admin_notices', 'bfpj_updater_file_missing_notice');
     }
 }
-function bfpj_updater_missing_notice() {
-    ?>
-    <div class="notice notice-error is-dismissible">
-        <p>
-            <strong>Plugin BFPJ:</strong> A biblioteca de atualização (Plugin Update Checker) não foi encontrada na pasta <code>/lib/</code>. 
-            As atualizações automáticas via GitHub não funcionarão até que isso seja corrigido. 
-            Por favor, verifique a instalação do plugin.
-        </p>
-    </div>
-    <?php
+function bfpj_updater_file_missing_notice() {
+    echo '<div class="notice notice-error"><p><strong>Plugin BFPJ:</strong> A biblioteca de atualização não foi encontrada na pasta <code>/lib/</code>. As atualizações automáticas não funcionarão.</p></div>';
 }
-// Executa a inicialização do updater
-bfpj_initialize_updater();
+function bfpj_updater_class_missing_notice() {
+    echo '<div class="notice notice-error"><p><strong>Plugin BFPJ:</strong> A biblioteca de atualização foi encontrada, mas parece estar corrompida. A classe principal não foi carregada. Por favor, reinstale a biblioteca.</p></div>';
+}
+add_action('plugins_loaded', 'bfpj_initialize_updater', 20);
 // FIM - CÓDIGO DE ATUALIZAÇÃO
 
 
-define( 'BFPJ_VERSION', '1.4.1' );
+define( 'BFPJ_VERSION', '1.4.2' );
 define( 'BFPJ_PLUGIN_FILE', __FILE__ );
 define( 'BFPJ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 final class BFPJ_Dados_Extras {
-    // ... O restante da classe principal do plugin continua exatamente o mesmo ...
+
     private static $_instance = null;
 
     public static function instance() {

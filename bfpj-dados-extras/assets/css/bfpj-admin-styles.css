@@ -2,16 +2,12 @@
 .bfpj-admin-wrap h1 {
     font-size: 24px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 .bfpj-subtitle {
     font-size: 16px;
     color: #50575e;
     margin-top: 0;
 }
-
 .bfpj-card {
     background-color: #fff;
     border: 1px solid #ccd0d4;
@@ -25,8 +21,8 @@
     padding: 10px 15px;
     border-bottom: 1px solid #ccd0d4;
     background-color: #f6f7f7;
-    cursor: pointer; /* Adicionado para indicar que é clicável */
-    user-select: none; /* Impede a seleção de texto ao clicar */
+    cursor: pointer;
+    user-select: none;
 }
 .bfpj-drag-handle {
     cursor: move;
@@ -51,7 +47,6 @@
 .bfpj-card-actions .bfpj-remove-field:hover {
     color: #a02728;
 }
-/* Ícone de recolher/expandir */
 .bfpj-toggle-icon {
     color: #50575e;
     font-size: 20px;
@@ -60,10 +55,9 @@
 .is-closed .bfpj-toggle-icon {
     transform: rotate(-90deg);
 }
-/* Esconde o corpo do card quando fechado */
 .bfpj-card-body {
     padding: 0 15px 15px;
-    max-height: 1000px; /* Altura grande para a animação */
+    max-height: 1000px;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
@@ -74,10 +68,8 @@
     border-top: none;
 }
 .is-closed .bfpj-card-header {
-    border-bottom-color: transparent; /* Remove borda quando fechado */
+    border-bottom-color: transparent;
 }
-
-
 .bfpj-fields-container .ui-sortable-placeholder {
     border: 2px dashed #ccd0d4;
     background-color: #f6f7f7;
@@ -86,21 +78,17 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
-
 .bfpj-actions {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-/* Correção de alinhamento do botão Adicionar */
 #bfpj-add-field {
     display: inline-flex;
     align-items: center;
     gap: 4px;
 }
-
-/* Toggle Switch */
 .bfpj-switch {
     position: relative;
     display: inline-block;
