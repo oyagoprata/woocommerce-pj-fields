@@ -1,10 +1,10 @@
-# 📄 Dados Extras para Cadastro PJ (BFPJ) para WooCommerce
+# 📄 Dados Extras para Cadastro PJ para WooCommerce
 
-![Banner do Plugin BFPJ](https://i.imgur.com/u1D0L4n.png)
+![Banner do Plugin DECPJ](https://i.imgur.com/u1D0L4n.png)
 
 ### Um plugin completo para adicionar, validar e gerenciar campos de Pessoa Jurídica no WooCommerce.
 
-> Este plugin foi desenvolvido para suprir uma necessidade crucial em lojas virtuais brasileiras que operam no modelo B2B: a coleta e validação de dados de clientes Pessoa Jurídica (PJ) de forma nativa, inteligente e integrada ao WooCommerce. Criado por **Yago Prata (MXR Studio)**, o BFPJ transforma o processo de cadastro e checkout para empresas.
+> Este plugin foi desenvolvido para suprir uma necessidade crucial em lojas virtuais brasileiras que operam no modelo B2B: a coleta e validação de dados de clientes Pessoa Jurídica (PJ) de forma nativa, inteligente e integrada ao WooCommerce. Criado por **Yago Prata (MXR Studio)**, o DECPJ transforma o processo de cadastro e checkout para empresas.
 
 <p align="center">
   <img src="https://img.shields.io/badge/versão-1.4.0-blue?style=for-the-badge" alt="Versão do Plugin">
